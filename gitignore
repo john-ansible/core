@@ -1,0 +1,11 @@
+*.bak
+*.retry
+ansible.cfg
+ansible.key
+core
+local.yml
+main.yml
+Makefile
+requirements.yml
+roles
+stage.yml
