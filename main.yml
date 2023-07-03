@@ -1,0 +1,147 @@
+- hosts: all, !windows_server, !xenserver, !zmail
+  roles:
+    - role: johnpion.init
+      tags: init
+
+    - role: johnpion.smart_hdd
+      tags: smart_hdd
+
+    - role: johnpion.iptables
+      tags: iptables
+
+- hosts: all, !windows_server
+  roles:
+    - role: johnpion.cron
+      tags: cron
+
+    - role: johnpion.ssh_keys
+      tags: ssh_keys
+
+#TODO: add zbx for xenserver or forget about it
+- hosts: all, !windows_server, !xenserver
+  roles:
+    - johnpion.zbx
+  tags: zbx
+
+- hosts: cryptstart
+  roles:
+    - cryptstart
+  tags: cryptstart
+
+- hosts: certbot
+  roles:
+    - johnpion.certbot
+  tags: certbot
+
+- hosts: dhcpd
+  roles:
+    - johnpion.dhcpd
+  tags: dhcpd
+
+- hosts: dns
+  roles:
+    - johnpion.cloudflare_dns
+    - johnpion.bind
+  tags: dns
+
+- hosts: gitlab
+  roles:
+    - johnpion.gitlab_server
+  tags: gitlab
+
+- hosts: gitlab_runner
+  roles:
+    - johnpion.gitlab_runner
+  tags: gitlab_runner
+
+- hosts: glpi
+  roles:
+    - johnpion.glpi
+  tags: glpi
+
+- hosts: fail2ban, gw, pve, pbs
+  roles:
+    - johnpion.fail2ban
+  tags: fail2ban
+
+- hosts: ipsec, gw
+  roles:
+    - johnpion.ipsec
+  tags: ipsec
+
+- hosts: iscsi
+  roles:
+    - johnpion.iscsi
+  tags: iscsi
+
+- hosts: mongodb
+  roles:
+    - johnpion.mongodb
+  tags: mongodb
+
+- hosts: mysql, glpi
+  roles:
+    - johnpion.mysql
+  tags: mysql
+
+- hosts: nginx, glpi, wiki
+  roles:
+    - johnpion.nginx
+  tags: nginx
+
+- hosts: openvpn, gw
+  roles:
+    - johnpion.openvpn
+  tags: openvpn
+
+- hosts: pg
+  roles:
+    - johnpion.pg
+  tags: pg
+
+# Proxmox Backup Server
+- hosts: pbs
+  roles:
+    - johnpion.pbs
+  tags: pbs
+
+# Proxmox VE
+- hosts: pve
+  roles:
+    - johnpion.pve
+  tags: pve
+
+- hosts: php, wiki, glpi
+  roles:
+    - johnpion.php
+  tags: php
+
+- hosts: rocketchat
+  roles:
+    - johnpion.rocketchat
+  tags: rocketchat
+
+- hosts: quagga, gw
+  roles:
+    - johnpion.quagga
+  tags: quagga
+
+- hosts: wiki
+  roles:
+    - johnpion.dokuwiki
+  tags: dokuwiki
+
+- hosts: windows_server
+  roles:
+    - johnpion.windows_server
+  tags: windows_server
+
+- hosts: zimbra
+  roles:
+    - johnpion.zimbra
+  tags: zimbra
+
+- hosts: all
+  roles:
+    - johnpion.wikidocs
+  tags: wikidocs
